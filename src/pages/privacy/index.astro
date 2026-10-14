@@ -1,0 +1,143 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { siteConfig } from '../../../site.config';
+---
+
+<BaseLayout
+  title={`Privacy · ${siteConfig.name}`}
+  description="Detour privacy policy — what stays on your device, what we do not collect, and how to contact the maintainers."
+  canonicalPath="/privacy/"
+>
+  <main class="legal">
+    <div class="wrap legal__inner">
+      <header class="legal__head">
+        <p class="legal__eyebrow">Policy</p>
+        <h1>Privacy</h1>
+        <p class="legal__meta">
+          <strong>Detour</strong> (“{siteConfig.tagline}”) · Effective 2026-10-07
+        </p>
+      </header>
+
+      <div class="prose">
+        <p>
+          Detour is a browser extension that runs on your device. It is free, MIT-licensed software.
+          The project does not operate an account system or a server for the extension.
+        </p>
+
+        <h2>Data that stays on your device</h2>
+        <ul>
+          <li>
+            Rules you write or import (including redirects, headers, injected code, mocks, and
+            replacement bodies)
+          </li>
+          <li>Whether Detour is on, theme, and badge preference</li>
+          <li>The apply report (which rules were installed or refused)</li>
+          <li>
+            A session match log: up to 50 rows with a rule label and URL. It is cleared when the
+            browser session ends. It does not include rule bodies
+          </li>
+        </ul>
+        <p>Firefox’s manifest declares data collection as <strong>none</strong>.</p>
+
+        <h2>What we do not do</h2>
+        <ul>
+          <li>No account, sign-in, or cloud sync</li>
+          <li>
+            No telemetry. The extension does not send rule bodies, file contents, or the match log
+            anywhere
+          </li>
+          <li>No sale of personal information</li>
+          <li>
+            The <code>debugger</code> permission (Chrome) and response filtering (Firefox) change
+            responses locally after you allow them. They are not used to transmit page contents to us
+          </li>
+        </ul>
+
+        <h2>This website</h2>
+        <p>
+          {siteConfig.url} is a static product site. Standard CDN and edge logs (IP, user agent,
+          timestamps) may be retained briefly for security and reliability. There is no account form
+          and no analytics product embedded by Detour on this site.
+        </p>
+
+        <h2>Permissions</h2>
+        <p>
+          Chrome, Edge, and Firefox show the extension’s permissions at install. Rationale lives with
+          the source in
+          <a href={`${siteConfig.github}/blob/main/docs/distribution/permissions.md`}
+            >docs/distribution/permissions.md</a
+          >.
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+          Questions:
+          <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>
+          ·
+          <a href={siteConfig.github}>github.com/protovoid/detour</a>
+          ·
+          <a href="/">detour.protovoid.com</a>
+        </p>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .legal {
+    padding: clamp(3rem, 8vh, 5rem) 0 var(--space-8);
+  }
+
+  .legal__inner {
+    max-width: 40rem;
+  }
+
+  .legal__eyebrow {
+    margin: 0 0 var(--space-2);
+    color: var(--accent);
+    font-size: var(--text-sm);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .legal__head h1 {
+    margin: 0 0 var(--space-3);
+    font-size: clamp(2rem, 1.4rem + 2vw, 2.75rem);
+    letter-spacing: -0.04em;
+  }
+
+  .legal__meta {
+    margin: 0 0 var(--space-6);
+    color: var(--text-2);
+    font-size: var(--text-sm);
+  }
+
+  .prose h2 {
+    margin: var(--space-6) 0 var(--space-3);
+    font-size: var(--text-lg);
+    letter-spacing: -0.02em;
+  }
+
+  .prose p,
+  .prose li {
+    color: var(--text-2);
+  }
+
+  .prose ul {
+    padding-left: 1.15rem;
+  }
+
+  .prose li + li {
+    margin-top: var(--space-2);
+  }
+
+  .prose a {
+    color: var(--accent);
+  }
+
+  .prose code {
+    font-family: var(--font-mono);
+    font-size: 0.92em;
+    color: var(--text);
+  }
+</style>

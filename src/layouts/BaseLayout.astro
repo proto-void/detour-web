@@ -1,0 +1,53 @@
+---
+import '../styles/global.css';
+import { siteConfig } from '../../site.config';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalPath?: string;
+}
+
+const {
+  title = `${siteConfig.name} · ${siteConfig.tagline}`,
+  description = siteConfig.description,
+  canonicalPath = Astro.url.pathname,
+} = Astro.props;
+
+const canonical = new URL(canonicalPath, siteConfig.url).href;
+---
+
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content={siteConfig.themeColor} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={siteConfig.name} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+    <footer class="site-footer">
+      <div class="wrap site-footer__inner">
+        <nav class="site-footer__nav" aria-label="Footer">
+          <a href={siteConfig.github}>GitHub</a>
+          <a href="/privacy/">Privacy</a>
+        </nav>
+        <p class="site-footer__by">
+          by <a href={siteConfig.studioUrl}>{siteConfig.studioName}</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
