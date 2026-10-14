@@ -9,6 +9,10 @@ npm install
 npm run dev
 ```
 
+## SEO
+
+See [docs/SEO.md](docs/SEO.md) for Search Console and post–Chrome Web Store wiring (`chromeStoreUrl`).
+
 ## Deploy
 
 Requires Cloudflare auth (`wrangler login` or `CLOUDFLARE_API_TOKEN`) on the Protovoid account that owns the `protovoid.com` zone.

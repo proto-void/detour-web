@@ -1,0 +1,138 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { siteConfig } from '../../../site.config';
+import { breadcrumbLd } from '../../lib/seo';
+
+const title = `Detour vs Resource Override · ${siteConfig.name}`;
+const description =
+  'Honest comparison: Detour is an MIT Manifest V3 rewrite inspired by Resource Override — local redirects, mocks, and overrides in Chrome without a Detour cloud.';
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  canonicalPath="/vs-resource-override/"
+  jsonLd={breadcrumbLd([
+    { name: 'Home', path: '/' },
+    { name: 'vs Resource Override', path: '/vs-resource-override/' },
+  ])}
+>
+  <main class="vs">
+    <div class="wrap vs__inner">
+      <header class="vs__head">
+        <p class="vs__eyebrow">Comparison</p>
+        <h1>Detour as a Resource Override alternative</h1>
+        <p class="vs__lede">
+          Looking for a <strong>Resource Override alternative</strong> on modern Chrome? Detour is an
+          MIT-licensed rewrite inspired by Resource Override, built for Manifest V3 — still local-only,
+          still for developers who need to redirect and override requests in the browser.
+        </p>
+      </header>
+
+      <div class="prose">
+        <h2>What stays the same</h2>
+        <ul>
+          <li>Redirect production URLs to localhost or another origin</li>
+          <li>Modify headers, block URLs, inject JS/CSS, mock fetch/XHR, replace bodies</li>
+          <li>Rules live on your device — no account and no Detour server</li>
+          <li>Import-friendly mindset for people coming from Resource Override exports</li>
+        </ul>
+
+        <h2>What is different</h2>
+        <ul>
+          <li>
+            <strong>Manifest V3</strong> — Detour targets current Chrome extension APIs (declarative
+            net request, optional debugger for body replace)
+          </li>
+          <li>
+            <strong>New codebase</strong> — not a fork of the old extension; MIT under
+            <a href={siteConfig.github}>proto-void/detour</a>
+          </li>
+          <li>
+            <strong>Brand</strong> — Detour by Protovoid; product site at
+            <a href="/">detour.protovoid.com</a>
+          </li>
+          <li>
+            <strong>Not a proxy SaaS</strong> — unrelated to any “Detour” VPN/proxy add-on; this is a
+            developer tools extension only
+          </li>
+        </ul>
+
+        <h2>When to choose Detour</h2>
+        <p>
+          Choose Detour if you need a maintained Chrome path to redirect requests and override
+          responses locally — mock APIs, point CDNs at localhost, inject debug scripts — without
+          running Charles/Fiddler or trusting a cloud rewrite service.
+        </p>
+        <p>
+          Prefer staying on the original Resource Override build if that extension still meets your
+          browser and policy needs. This page is an honest comparison, not a claim that every Legacy
+          MV2 detail is identical.
+        </p>
+
+        <p class="vs__cta">
+          <a class="btn btn--primary" href={siteConfig.github}>View source on GitHub</a>
+          <a class="btn btn--ghost" href="/">Product home</a>
+        </p>
+      </div>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .vs {
+    padding: clamp(3rem, 8vh, 5rem) 0 var(--space-8);
+  }
+
+  .vs__inner {
+    max-width: 40rem;
+  }
+
+  .vs__eyebrow {
+    margin: 0 0 var(--space-2);
+    color: var(--accent);
+    font-size: var(--text-sm);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .vs__head h1 {
+    margin: 0 0 var(--space-4);
+    font-size: clamp(1.75rem, 1.2rem + 2vw, 2.5rem);
+    letter-spacing: -0.035em;
+    line-height: 1.15;
+  }
+
+  .vs__lede {
+    margin: 0 0 var(--space-7);
+    color: var(--text-2);
+    font-size: var(--text-lg);
+  }
+
+  .prose h2 {
+    margin: var(--space-6) 0 var(--space-3);
+    font-size: var(--text-lg);
+    letter-spacing: -0.02em;
+  }
+
+  .prose p,
+  .prose li {
+    color: var(--text-2);
+  }
+
+  .prose ul {
+    margin: 0;
+    padding-left: 1.2rem;
+  }
+
+  .prose li + li {
+    margin-top: var(--space-2);
+  }
+
+  .vs__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+    margin-top: var(--space-7);
+  }
+</style>

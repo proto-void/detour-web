@@ -1,20 +1,36 @@
 ---
 import '../styles/global.css';
 import { siteConfig } from '../../site.config';
+import { absoluteUrl, softwareApplicationLd, websiteLd } from '../lib/seo';
 
 interface Props {
   title?: string;
   description?: string;
   canonicalPath?: string;
+  /** Extra JSON-LD objects (FAQPage, BreadcrumbList, etc.). */
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  /** Include default WebSite + SoftwareApplication schema (home). */
+  includeAppSchema?: boolean;
 }
 
 const {
-  title = `${siteConfig.name} · ${siteConfig.tagline}`,
+  title = siteConfig.title,
   description = siteConfig.description,
   canonicalPath = Astro.url.pathname,
+  jsonLd,
+  includeAppSchema = false,
 } = Astro.props;
 
-const canonical = new URL(canonicalPath, siteConfig.url).href;
+const canonical = absoluteUrl(canonicalPath);
+const ogImage = absoluteUrl(siteConfig.defaultOgImage);
+
+const schemas: Record<string, unknown>[] = [];
+if (includeAppSchema) {
+  schemas.push(websiteLd(), softwareApplicationLd());
+}
+if (jsonLd) {
+  schemas.push(...(Array.isArray(jsonLd) ? jsonLd : [jsonLd]));
+}
 ---
 
 <!doctype html>
@@ -27,22 +43,40 @@ const canonical = new URL(canonicalPath, siteConfig.url).href;
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content={siteConfig.name} />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content={String(siteConfig.ogImageWidth)} />
+    <meta property="og:image:height" content={String(siteConfig.ogImageHeight)} />
+    <meta property="og:image:alt" content={`${siteConfig.name} — ${siteConfig.tagline}`} />
+    <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
     <title>{title}</title>
+    {
+      schemas.map((schema) => (
+        <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+      ))
+    }
   </head>
   <body>
     <slot />
     <footer class="site-footer">
       <div class="wrap site-footer__inner">
         <nav class="site-footer__nav" aria-label="Footer">
-          <a href={siteConfig.github}>GitHub</a>
+          <a href="/#features">Features</a>
           <a href="/privacy/">Privacy</a>
+          <a href="/vs-resource-override/">vs Resource Override</a>
+          <a href={siteConfig.github}>GitHub</a>
+          {
+            siteConfig.chromeStoreUrl ? (
+              <a href={siteConfig.chromeStoreUrl}>Chrome Web Store</a>
+            ) : null
+          }
         </nav>
         <p class="site-footer__by">
           by <a href={siteConfig.studioUrl}>{siteConfig.studioName}</a>
