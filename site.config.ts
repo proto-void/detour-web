@@ -5,7 +5,7 @@ export const siteConfig = {
     'Detour is a free, open-source browser extension that redirects, rewrites, injects, mocks, and replaces responses so you can aim production at your own code — locally, with no account.',
   url: 'https://detour.protovoid.com',
   themeColor: '#07060d',
-  github: 'https://github.com/protovoid/detour',
+  github: 'https://github.com/proto-void/detour',
   /** Set when the Chrome Web Store listing is live. Empty = show “Chrome soon” CTA. */
   chromeStoreUrl: '',
   contactEmail: 'detour@protovoid.com',

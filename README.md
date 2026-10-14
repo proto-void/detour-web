@@ -1,6 +1,6 @@
 # detour-web
 
-Product site for [Detour](https://github.com/protovoid/detour) — Astro static site on a Cloudflare Worker at **https://detour.protovoid.com**.
+Product site for [Detour](https://github.com/proto-void/detour) — Astro static site on a Cloudflare Worker at **https://detour.protovoid.com**.
 
 ## Develop
 
@@ -26,9 +26,9 @@ cd ~/Project/detour-web
 git init
 git add .
 git commit -m "Initial Detour product site"
-gh repo create protovoid/detour-web --public --source=. --remote=origin --push
+gh repo create proto-void/detour-web --public --source=. --remote=origin --push
 # or:
-# git remote add origin git@github.com:protovoid/detour-web.git
+# git remote add origin git@github.com:proto-void/detour-web.git
 # git branch -M main
 # git push -u origin main
 ```
