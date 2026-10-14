@@ -2,6 +2,22 @@
 
 Implementable site SEO lives in the repo (`BaseLayout`, `site.config.ts`, `/vs-resource-override/`, OG image). These steps stay **manual** for Hamza after CWS approval and first deploy.
 
+## Redeploy (when Wrangler OAuth is expired)
+
+```sh
+cd ~/Project/detour-web
+npx wrangler login
+npm run deploy
+```
+
+If `protovoid-web` product blurb should be live too (branch `feat/astro-redesign`):
+
+```sh
+cd ~/Project/protovoid-web
+npx wrangler login   # same account if needed
+npm run deploy
+```
+
 ## Google Search Console
 
 1. Add a property for `https://detour.protovoid.com/` (URL-prefix or domain via DNS).
