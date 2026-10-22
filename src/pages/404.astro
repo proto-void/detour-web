@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Not found · Detour" description="That page is not on detour.protovoid.com.">
+  <main class="miss">
+    <div class="wrap">
+      <h1>Not found</h1>
+      <p>That path is not on this site.</p>
+      <a class="btn btn--primary" href="/">Back to Detour</a>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .miss {
+    padding: clamp(5rem, 18vh, 9rem) 0;
+  }
+
+  .miss h1 {
+    margin: 0 0 var(--space-3);
+    font-size: var(--text-display);
+    letter-spacing: var(--tracking-display);
+  }
+
+  .miss p {
+    margin: 0 0 var(--space-5);
+    color: var(--text-2);
+  }
+</style>
